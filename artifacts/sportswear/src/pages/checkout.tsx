@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useCreateOrder } from "@workspace/api-client-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 export default function Checkout() {
@@ -26,10 +26,13 @@ export default function Checkout() {
   const shippingFee = 15;
   const finalTotal = totalPrice + shippingFee;
 
-  if (items.length === 0) {
-    setLocation("/cart");
-    return null;
-  }
+  useEffect(() => {
+    if (items.length === 0) {
+      setLocation("/cart");
+    }
+  }, [items.length, setLocation]);
+
+  if (items.length === 0) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

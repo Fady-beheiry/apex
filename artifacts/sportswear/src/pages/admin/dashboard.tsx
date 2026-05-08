@@ -1,5 +1,5 @@
 import { AdminLayout } from "@/components/admin-layout";
-import { useGetAdminAnalytics } from "@workspace/api-client-react";
+import { useGetAdminAnalytics, getGetAdminAnalyticsQueryKey } from "@workspace/api-client-react";
 import { useAuth } from "@/lib/auth";
 import { useLocation } from "wouter";
 import { useEffect } from "react";
@@ -19,6 +19,7 @@ export default function AdminDashboard() {
 
   const { data: analytics, isLoading } = useGetAdminAnalytics({
     query: {
+      queryKey: getGetAdminAnalyticsQueryKey(),
       enabled: !!admin,
     }
   });

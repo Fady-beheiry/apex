@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { useGetAdminMe, AdminUser } from "@workspace/api-client-react";
+import { useGetAdminMe, AdminUser, getGetAdminMeQueryKey } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
 
 interface AuthContextType {
@@ -19,6 +19,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const { data: meData, isLoading } = useGetAdminMe({
     query: {
+      queryKey: getGetAdminMeQueryKey(),
       enabled: !!token,
       retry: false,
     },

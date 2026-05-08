@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState("admin@apex-athletics.com");
+  const [email, setEmail] = useState("admin@apex.com");
   const [password, setPassword] = useState("admin123");
   const [, setLocation] = useLocation();
   const { login, admin, isLoading: authLoading } = useAuth();

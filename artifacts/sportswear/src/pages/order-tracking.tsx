@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useTrackOrder } from "@workspace/api-client-react";
+import { useTrackOrder, getTrackOrderQueryKey } from "@workspace/api-client-react";
 import { Search, Package, Truck, CheckCircle } from "lucide-react";
 import { useLocation } from "wouter";
 
@@ -16,6 +16,7 @@ export default function OrderTracking() {
 
   const { data: order, isLoading, isError } = useTrackOrder(searchQuery, {
     query: {
+      queryKey: getTrackOrderQueryKey(searchQuery),
       enabled: !!searchQuery && searchQuery.length > 3,
       retry: false
     }

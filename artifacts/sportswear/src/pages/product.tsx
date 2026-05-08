@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout";
 import { useRoute } from "wouter";
-import { useGetProduct, getGetProductQueryKey, useListProductReviews, useCreateProductReview } from "@workspace/api-client-react";
+import { useGetProduct, getGetProductQueryKey, useListProductReviews, useCreateProductReview, getListProductReviewsQueryKey } from "@workspace/api-client-react";
 import { useCart } from "@/lib/cart";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,7 @@ export default function ProductDetail() {
   });
 
   const { data: reviews } = useListProductReviews(id, {
-    query: { enabled: !!id }
+    query: { queryKey: getListProductReviewsQueryKey(id), enabled: !!id }
   });
 
   const createReview = useCreateProductReview();
